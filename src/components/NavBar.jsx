@@ -7,48 +7,62 @@ import {
   MenuList,
   MenuItem,
   Box,
-  Flex,
-  Container,
   Spacer,
   Button,
   Avatar,
+  Center
 } from '@chakra-ui/react'
+import { Link } from 'react-router-dom';
 
-
-//Barra de Navegacion
 const NavBar = () => {
   return (
-  <>
-  <Container maxW="100%" bg="teal" textColor="black" >
-  <Flex alignItems="center" gap="2" p="2">
-  <Box p="4" w='300px' h='100' bg='blue.200'> 
-  <Avatar size="lg"  src='https://res.cloudinary.com/marievillagran/image/upload/v1661629519/Proyecto/logo_uferhq.png' />
-  </Box> 
-  <Spacer/>
-  <Box p="10" w='300px' h='100' bg='blue.200' textAlign="center">
-    <h1>Pastas Artesanales</h1>   
-  </Box>
-  <Spacer/>
-  <Box p="8" w='300px' h='100' bg='blue.200' textAlign="center">
-  <Menu>
-  <MenuButton as={Button} size="lg" colorScheme="teal" variant="outline" rigthIcon={<ChevronDownIcon />}>
-    Categorias
-  </MenuButton >
-    <MenuList className='menu' >
-       <MenuItem>Variedades</MenuItem>
-       <MenuItem>Promociones</MenuItem>
-       <MenuItem>Sucursales</MenuItem>
-       <MenuItem>Comparta su experiencia</MenuItem>
-    </MenuList>
-  </Menu>
-</Box>
-<Spacer/>
-<Box p="8" w='300px' h='100' bg='blue.200' textAlign="center">
-   <CartWidget/>
-</Box> 
-</Flex>
-</Container>
-  </>
+    <>  
+      <div>
+        <Center className='navbar' bg="gray.300">
+           <Spacer/>
+              <Box>
+                <Link to={"/"}>
+                <Avatar p="2" size='xl' src='https://res.cloudinary.com/marievillagran/image/upload/v1663454544/Proyecto/logoinsta_kljs88.png'/>
+                </Link>
+              </Box>
+           <Spacer/>
+              <Box>  
+                <Menu>
+                <Link to={"/catalogo"}>
+                <MenuButton as={Button} size="lg" color='black' borderRadius='md'
+                bgGradient='linear(to-r, pink, purple)' _hover={{bgGradient: 'linear(to-r, purple, pink)',}}>
+                Catalogo
+                </MenuButton> 
+                </Link>
+                </Menu>  
+              </Box>
+           <Spacer/>
+              <Box>  
+                <Menu>
+                <MenuButton as={Button} size="lg" color='black' borderRadius='md'
+                bgGradient='linear(to-r, pink, purple)' _hover={{bgGradient: 'linear(to-r, purple, pink)',}} rightIcon={<ChevronDownIcon />}>
+                Categoria 
+                </MenuButton >
+                <MenuList className='menu' bgGradient='linear(to-r, pink, purple)'>
+                <Link to={`/categoria/${"Variedad"}`}>
+                <MenuItem bgGradient='linear(to-r, pink, purple)'>Variedades</MenuItem>
+                </Link>
+                <Link to={`/categoria/${"Promo"}`}>
+                <MenuItem bgGradient='linear(to-r, pink, purple)'>Promociones</MenuItem>
+                </Link>
+                </MenuList>
+                </Menu>
+              </Box>
+           <Spacer/>
+              <Box>
+                <Link to={"/cart"}>
+                <CartWidget/>
+                </Link>
+              </Box> 
+           <Spacer/>
+        </Center>
+      </div>
+    </>
   );
 };
 

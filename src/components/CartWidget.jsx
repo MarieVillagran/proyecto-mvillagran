@@ -6,7 +6,8 @@ const CartWidget = () => {
   return(
     <>
       <div className="carrito">
-         <Button size="lg" colorScheme="teal" variant="outline" >
+         <Button size="lg" color='black' borderRadius='md' bgGradient='linear(to-r, pink, purple)'
+          _hover={{bgGradient: 'linear(to-r, purple, pink)',}}>
            <span className="material-symbols-outlined">shopping_cart</span>
            <span>5</span>
          </Button>

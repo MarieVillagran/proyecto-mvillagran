@@ -25,9 +25,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
   place-items: center;
-  min-width: 320px;
   min-height: 100vh;
 }
 
@@ -36,6 +34,34 @@ h1 {
   line-height: 1.1;
 }
 
+.main-catalogue {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  width: 100vw;
+}  
+
+.welcome {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.navbar {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  width: 100%;
+} 
+.botones {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  width: 80%;
+}
+.card {
+  display: flex;
+  justify-content: center;
+}
 button {
   border-radius: 8px;
   border: 1px solid transparent;
