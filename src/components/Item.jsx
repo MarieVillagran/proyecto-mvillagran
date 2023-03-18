@@ -1,6 +1,5 @@
 import {
     Button,
-    ButtonGroup,
     Card, 
     CardBody, 
     CardFooter,
@@ -15,7 +14,7 @@ import {
 import { Link } from 'react-router-dom';
 
 const Item = ({id, nombre, precio, desc, stock, img, cat}) => {
-
+//console.log(id)
 return (
 <>
 <Flex>  

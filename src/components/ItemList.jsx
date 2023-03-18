@@ -1,16 +1,16 @@
 import Item from "./Item";
 
-const ItemList = ({products}) => {
+const ItemList = ({prod}) => {
     //console.log(data);
-    //console.log(cat);
+    //console.log(prod);
 
 return (
 <>
   <div w="container.sm" className="main-catalogue">
-  {products?.map((prod)=>(
+  {prod?.map((prod)=>(
       <Item
         key={prod.id}
-        id={prod.id}  
+        id={prod.id} 
         nombre={prod.nombre}
         desc={prod.desc}
         precio={prod.precio}

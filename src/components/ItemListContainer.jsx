@@ -1,38 +1,36 @@
 import ItemList from './ItemList'
-import data from "../data.json"
 import { useEffect, useState } from 'react';
-import { Center } from '@chakra-ui/react'
+import { 
+   Center,
+   Text
+ } from '@chakra-ui/react'
 import { useParams } from 'react-router-dom';
+import {collection, getDocs, getFirestore} from "firebase/firestore";
 
 const ItemListContainer = () => {
+   const [prod, setProducts] = useState([]);
    const { cat } = useParams();  
   
-   console.log(cat)
-   const [products, setProducts] = useState([])
-  
-    //opcion con useEffect
-   useEffect (()=>{
-      async function fetchData() {
-        try {
-         const response = await fetch('../data.json');
-         const products = await response.json();
-         setProducts(products);
-        } 
-        catch (error) {
-        }
-        }
-     fetchData();  
-    },[]); 
+   useEffect (() => {
+      const db = getFirestore();
+      const prodCollection = collection(db, "datos");
+      getDocs(prodCollection).then((snapshot) =>{
+         const docs = snapshot.docs.map((doc)=> ({ id: doc.id, ...doc.data() }));
+         setProducts(docs)
+      })
+         
+      
+   },[]); 
    
-  const catFilter = data.filter((prod) => prod.cat === cat);
-  console.log(catFilter)
+  const catFilter = prod.filter((prod) => prod.cat === cat);
+  //console.log(catFilter)
   
   return (
       <div>
       <Center  h='100px' color='black' bgGradient='linear( #A0AEC0, #FF0080)'>
-         <h1>Productos para elegir!</h1>
+         <Text as="b">Productos para elegir!</Text>
       </Center>  
-      {cat ? <ItemList products={catFilter} /> : <ItemList products={data} />}      
+      {cat ? <ItemList prod={catFilter} /> : <ItemList prod={prod} />}      
       </div>
   )
 }

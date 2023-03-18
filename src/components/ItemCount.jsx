@@ -6,16 +6,34 @@ import {
   IconButton,
   Tooltip
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
+import { CartContext } from '../context/ShopingCartContext';
 
-export const ItemCount = ({stock, id, precio, nombre}) => {
-      
-  const [contador, setContador] = useState(1)  
+export const ItemCount = ({stock, id, precio, nombre, img}) => {
+  const [cart, setCart] = useContext(CartContext);  
+  const [contador, setContador] = useState(1);
   
-  const suma = () =>{setContador(contador +1)}    
+  //Suma un porducto para agregar
+  const suma = () =>{setContador(contador +1)} 
+  //Resta un porducto   
   const resta = () => {setContador(contador - 1)};
+  //Setea el producto para que se agregue
   const onAdd = () =>{
-      console.log("Agrega al carrito")
+     setCart((currItems) =>{
+      const isItemExist = currItems.find((item)=> item.id === id);
+      if (isItemExist){
+        return currItems.map((item) =>{
+          if(item.id === id){
+            return {...item, cantidad: item.cantidad + contador};
+            } else {
+              return item;
+            }
+        });
+      } else {
+        return [ ...currItems, {id, cantidad: contador, precio, nombre, img}];
+      }
+     });
+      console.log("Agrega al carrito" + " " + contador + " " + (nombre))
     };
     
     /* useEffect (()=> {
@@ -41,7 +59,7 @@ export const ItemCount = ({stock, id, precio, nombre}) => {
           <IconButton icon={<AddIcon />} isDisabled/></Tooltip>)}
 
            <Divider/>
-             <Button size="sm" onClick={()=> onAdd()}>Add</Button>
+             <Button size="sm" onClick={()=> onAdd(contador)}>Add</Button>
            <Divider/>
          </ButtonGroup>
          </div>  

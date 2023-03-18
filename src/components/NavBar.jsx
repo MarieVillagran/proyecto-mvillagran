@@ -60,7 +60,7 @@ const NavBar = () => {
                 </Link>
               </Box> 
            <Spacer/>
-        </Center>
+        </Center>  
       </div>
     </>
   );

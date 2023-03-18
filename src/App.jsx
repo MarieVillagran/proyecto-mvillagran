@@ -5,9 +5,11 @@ import ItemDetailContainer from './components/ItemDetailContainer';
 import ItemListContainer from './components/ItemListContainer';
 import NavBar from './components/NavBar';
 import Welcome from './components/Welcome';
+import { ShopingCartProvider } from './context/ShopingCartContext';
 
 function App() {
   return (
+    <ShopingCartProvider>
     <BrowserRouter>
       <NavBar/>
       <Routes>  
@@ -18,7 +20,7 @@ function App() {
         <Route exact path="/cart" element={<Cart/>}/>
       </Routes>  
     </BrowserRouter>  
-    
+    </ShopingCartProvider>
   ); 
 }
 
